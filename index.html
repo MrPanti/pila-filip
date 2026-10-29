@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pila Filip – Strunkovice nad Volyňkou | Pořez kulatiny, 5stranná fréza a krovy</title>
     <meta name="description" content="Pila Filip – Strunkovice nad Volyňkou 33. Zakázkový pořez kulatiny do 10 m (Wood-Mizer LT70), prodej stavebního řeziva, výroba palubek a pochozích fošen na 5stranné fréze MP365, CNC krovy ve spolupráci s VOŠ a SPŠ Volyně a doprava.">
+    <!-- Ikona v záložce prohlížeče (Favicon PF) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23d97706'/><text x='50%' y='54%' dominant-baseline='central' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='800' font-size='52'>PF</text></svg>">
+
+    <!-- Náhled webu při poslání odkazu přes WhatsApp / Messenger / SMS -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pila Filip – Strunkovice nad Volyňkou | Pořez kulatiny, 5stranná fréza a krovy">
+    <meta property="og:description" content="Zakázkový pořez kulatiny až do 10 m, prodej stavebního řeziva, výroba palubek a pochozích fošen na 5stranné fréze MP365, CNC krovy a doprava.">
+    <meta property="og:image" content="https://pila-filip.cz/fotky/20251206_095932.jpg">
+
+    <!-- Strukturovaná data pro Google a Seznam (LocalBusiness) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Pila Filip – Strunkovice nad Volyňkou",
+      "LegalName": "Mgr. Zdeněk Filip",
+      "taxID": "CZ6507140420",
+      "telephone": "+420606751530",
+      "email": "z.filip@pila-filip.cz",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Strunkovice nad Volyňkou 33",
+        "addressLocality": "Strunkovice nad Volyňkou",
+        "postalCode": "387 01",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.2082,
+        "longitude": 13.8864
+      }
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -702,14 +735,29 @@
         </div>
     </section>
 
-    <!-- LIGHTBOX MODAL PRO ZVĚTŠENÍ FOTKY -->
-    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-stone-950/95 backdrop-blur-sm flex items-center justify-center p-4 no-print" onclick="closeLightbox()">
-        <button class="absolute top-5 right-5 text-white hover:text-amber-400 p-2" onclick="closeLightbox()" aria-label="Zavřít náhled">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <!-- LIGHTBOX MODAL PRO ZVĚTŠENÍ FOTKY (S LISTOVÁNÍM A PODPOROU SWIPE) -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-stone-950/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 no-print select-none" onclick="closeLightbox()">
+        <!-- Počítadlo fotek vlevo nahoře -->
+        <div id="lightbox-counter" class="absolute top-5 left-5 text-stone-400 text-xs sm:text-sm font-bold bg-stone-900/80 px-3 py-1.5 rounded-lg border border-stone-800"></div>
+
+        <!-- Tlačítko Zavřít -->
+        <button class="absolute top-4 right-4 text-white hover:text-amber-400 p-2 bg-stone-900/80 rounded-full border border-stone-800 transition z-10" onclick="closeLightbox()" aria-label="Zavřít náhled">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
-        <div class="max-w-5xl w-full text-center" onclick="event.stopPropagation()">
+
+        <!-- Šipka Předchozí -->
+        <button class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 p-2.5 sm:p-3 bg-stone-900/80 hover:bg-stone-900 rounded-full border border-stone-700 transition z-10" onclick="event.stopPropagation(); changeLightboxImage(-1)" aria-label="Předchozí fotka">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+
+        <!-- Šipka Další -->
+        <button class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 p-2.5 sm:p-3 bg-stone-900/80 hover:bg-stone-900 rounded-full border border-stone-700 transition z-10" onclick="event.stopPropagation(); changeLightboxImage(1)" aria-label="Další fotka">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="max-w-5xl w-full text-center px-8 sm:px-14" onclick="event.stopPropagation()">
             <div class="overflow-hidden rounded-xl inline-block max-h-[80vh]">
-                <img id="lightbox-img" src="" alt="" class="max-h-[75vh] w-auto mx-auto object-contain rounded-lg">
+                <img id="lightbox-img" src="" alt="" class="max-h-[75vh] w-auto mx-auto object-contain rounded-lg transition-transform duration-200">
             </div>
             <p id="lightbox-caption" class="text-white font-semibold mt-4 text-sm sm:text-base"></p>
         </div>
@@ -1032,11 +1080,18 @@
                         </a>
                     </div>
                 </div>
-                <div class="w-full h-80 sm:h-96 bg-stone-900">
+                <div class="w-full h-80 sm:h-96 bg-stone-900 relative" onmouseleave="lockMap()">
+                    <!-- Ochranná vrstva proti nechtěnému posouvání mapy při scrollování na mobilu -->
+                    <div id="map-overlay" onclick="unlockMap()" class="absolute inset-0 z-10 bg-stone-950/20 hover:bg-stone-950/10 flex items-end justify-center pb-4 cursor-pointer transition">
+                        <span class="bg-stone-900/90 text-amber-400 border border-amber-500/40 px-4 py-2 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
+                            Ťukněte pro interakci s mapou
+                        </span>
+                    </div>
                     <iframe 
+                        id="map-iframe"
                         title="Mapa Pila Filip – Strunkovice nad Volyňkou 33"
                         src="https://maps.google.com/maps?q=Strunkovice%20nad%20Voly%C5%88kou%2033&t=m&z=15&ie=UTF8&iwloc=&output=embed" 
-                        class="w-full h-full border-0" 
+                        class="w-full h-full border-0 pointer-events-none" 
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
@@ -1178,22 +1233,56 @@
             });
         }
 
-        // Lightbox (zvětšení fotky) + podpora gesta Zpět a správné měřítko pro otočenou fotku
-        function openLightbox(src, caption, isRotated) {
-            const lightbox = document.getElementById('lightbox');
+        // Lightbox s listováním (šipky + přejetí prstem na mobilu)
+        let visibleGalleryItems = [];
+        let currentLightboxIndex = 0;
+
+        function updateVisibleGalleryItems() {
+            visibleGalleryItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+        }
+
+        function renderLightboxSlide(index) {
+            if (visibleGalleryItems.length === 0) return;
+            currentLightboxIndex = (index + visibleGalleryItems.length) % visibleGalleryItems.length;
+            const item = visibleGalleryItems[currentLightboxIndex];
+            const onclickAttr = item.getAttribute('onclick');
+            // Vytáhneme parametry z atributu onclick karty
+            const match = onclickAttr.match(/openLightbox\('([^']+)',\s*'([^']+)',\s*(true|false)\)/);
+            if (!match) return;
+
+            const [, src, caption, isRotatedStr] = match;
+            const isRotated = isRotatedStr === 'true';
+
             const img = document.getElementById('lightbox-img');
             const cap = document.getElementById('lightbox-caption');
+            const counter = document.getElementById('lightbox-counter');
 
             img.src = src;
             cap.textContent = caption;
+            counter.textContent = `${currentLightboxIndex + 1} / ${visibleGalleryItems.length}`;
+
             if (isRotated) {
                 img.className = 'max-h-[65vw] sm:max-h-[65vh] w-auto mx-auto object-contain rounded-lg rotate-90 my-10';
             } else {
                 img.className = 'max-h-[75vh] w-auto mx-auto object-contain rounded-lg';
             }
+        }
+
+        function openLightbox(src, caption, isRotated) {
+            updateVisibleGalleryItems();
+            const clickedIndex = visibleGalleryItems.findIndex(item => item.getAttribute('onclick').includes(src));
+            currentLightboxIndex = clickedIndex !== -1 ? clickedIndex : 0;
+
+            renderLightboxSlide(currentLightboxIndex);
+
+            const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
             history.pushState({ lightboxOpen: true }, '');
+        }
+
+        function changeLightboxImage(step) {
+            renderLightboxSlide(currentLightboxIndex + step);
         }
 
         function closeLightbox() {
@@ -1207,12 +1296,44 @@
             }
         }
 
+        // Podpora přejetí prstem (swipe doleva/doprava) v galerii na mobilu
+        let touchStartX = 0;
+        const lightboxEl = document.getElementById('lightbox');
+        lightboxEl.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightboxEl.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 45) {
+                changeLightboxImage(1); // Přejetí doleva -> další fotka
+            } else if (touchEndX - touchStartX > 45) {
+                changeLightboxImage(-1); // Přejetí doprava -> předchozí fotka
+            }
+        }, { passive: true });
+
+        // Klávesnice: Escape zavře, šipky doleva/doprava listují fotkami
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-                if (isMenuOpen) closeMobileMenu(false);
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') changeLightboxImage(1);
+                if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+            } else if (e.key === 'Escape' && isMenuOpen) {
+                closeMobileMenu(false);
             }
         });
+
+        // Odemykání a zamykání mapy proti nechtěnému zachycení scrollu
+        function unlockMap() {
+            document.getElementById('map-overlay').classList.add('hidden');
+            document.getElementById('map-iframe').classList.remove('pointer-events-none');
+        }
+
+        function lockMap() {
+            document.getElementById('map-overlay').classList.remove('hidden');
+            document.getElementById('map-iframe').classList.add('pointer-events-none');
+        }
 
         // Sestavení textu poptávky
         function sestavitZpravu() {
