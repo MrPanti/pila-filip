@@ -129,21 +129,27 @@
                 </div>
 
                 <!-- Mobilní menu tlačítko -->
-                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-stone-700 hover:bg-stone-100 focus:outline-none" aria-label="Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-stone-700 hover:bg-stone-100 focus:outline-none" aria-label="Menu" aria-expanded="false">
+                    <!-- Ikona hamburgeru -->
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <!-- Ikona křížku pro zavření -->
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
         </div>
 
-        <!-- Mobilní rozbalovací menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-stone-200 px-4 pt-3 pb-5 space-y-2 shadow-lg">
-            <a href="#sluzby" class="block py-2 text-base font-semibold text-stone-800 border-b border-stone-100">Pořez kulatiny a prodej řeziva</a>
-            <a href="#profilovani" class="block py-2 text-base font-semibold text-amber-700 border-b border-stone-100">Hoblování a 5stranná fréza MP365</a>
-            <a href="#cnc-krovy" class="block py-2 text-base font-semibold text-stone-800 border-b border-stone-100">CNC krovy (SPŠ a VOŠ Volyně)</a>
-            <a href="#doprava" class="block py-2 text-base font-semibold text-stone-800 border-b border-stone-100">Doprava řeziva (11m vlek)</a>
-            <a href="#fotogalerie" class="block py-2 text-base font-semibold text-stone-800 border-b border-stone-100">Fotogalerie z provozu</a>
-            <a href="#cenik" class="block py-2 text-base font-semibold text-stone-800 border-b border-stone-100">Ceník a podmínky</a>
-            <a href="#kontakt" class="block py-2 text-base font-semibold text-stone-800">Kontakt a mapa</a>
+        <!-- Mobilní rozbalovací menu (sjednocené barvy + napojení na tlačítko Zpět) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-stone-200 px-4 pt-3 pb-5 space-y-1 shadow-xl">
+            <a href="#sluzby" class="block py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 border-b border-stone-100 transition">Pořez kulatiny a prodej řeziva</a>
+            <a href="#profilovani" class="flex items-center justify-between py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 border-b border-stone-100 transition">
+                <span>Hoblování a 5stranná fréza</span>
+                <span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded font-bold uppercase">MP365</span>
+            </a>
+            <a href="#cnc-krovy" class="block py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 border-b border-stone-100 transition">CNC krovy (SPŠ a VOŠ Volyně)</a>
+            <a href="#doprava" class="block py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 border-b border-stone-100 transition">Doprava řeziva (11m vlek)</a>
+            <a href="#fotogalerie" class="block py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 border-b border-stone-100 transition">Fotogalerie z provozu</a>
+            <a href="#cenik" class="block py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 border-b border-stone-100 transition">Ceník a podmínky</a>
+            <a href="#kontakt" class="block py-2.5 px-2 rounded-lg text-base font-semibold text-stone-800 hover:bg-stone-100 active:bg-stone-200 transition">Kontakt a mapa</a>
             <div class="pt-3 flex gap-2">
                 <a href="tel:+420606751530" class="flex-1 bg-amber-600 text-white text-center py-3 rounded-lg font-bold text-sm">Zavolat: 606 751 530</a>
                 <a href="https://wa.me/420606751530" target="_blank" class="flex-1 bg-emerald-600 text-white text-center py-3 rounded-lg font-bold text-sm">WhatsApp</a>
@@ -584,7 +590,7 @@
                     <div class="p-3 text-xs font-semibold text-stone-800">Rozmítací pila Edger Multirip</div>
                 </div>
 
-                <!-- 4. 5stranná fréza MP365 (zařazena v "stroje" I v "mp365") -->
+                <!-- 4. 5stranná fréza MP365 -->
                 <div class="gallery-item group cursor-pointer bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm" data-category="stroje mp365" onclick="openLightbox('fotky/20251206_094734.jpg', 'Pětivřetenová srovnávačka a tvarovačka Wood-Mizer MP365', false)">
                     <div class="h-48 overflow-hidden bg-stone-200 relative">
                         <img src="fotky/20251206_094734.jpg" loading="lazy" alt="5stranná fréza Wood-Mizer MP365" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
@@ -624,7 +630,7 @@
                     <div class="p-3 text-xs font-semibold text-stone-800">Katalog profilů (nože MP365)</div>
                 </div>
 
-                <!-- 9. Pohled pod kryt 5 vřeten MP365 (zařazena v "stroje" I v "mp365") -->
+                <!-- 9. Pohled pod kryt 5 vřeten MP365 -->
                 <div class="gallery-item group cursor-pointer bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm" data-category="stroje mp365" onclick="openLightbox('fotky/20261028_092934.jpg', 'Pohled do nitra 5stranné frézy MP365 – 5 vřeten a podávací válce', false)">
                     <div class="h-48 overflow-hidden bg-stone-200 relative">
                         <img src="fotky/20261028_092934.jpg" loading="lazy" alt="Vřetena frézy MP365" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
@@ -1053,19 +1059,80 @@
         </div>
     </footer>
 
-    <!-- Skripty pro menu, fotogalerii a sestavovač poptávky -->
+    <!-- Skripty pro menu (s podporou tlačítka Zpět na mobilu), fotogalerii a sestavovač poptávky -->
     <script>
-        // Mobilní menu
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        let isMenuOpen = false;
+
+        function setMenuUI(open) {
+            isMenuOpen = open;
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) {
+                mobileMenu.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        function openMobileMenu() {
+            if (isMenuOpen) return;
+            setMenuUI(true);
+            // Přidáme virtuální krok do historie prohlížeče, aby gesto "Zpět" na mobilu zavřelo menu
+            history.pushState({ mobileMenuOpen: true }, '');
+        }
+
+        function closeMobileMenu(fromHistoryPop = false) {
+            if (!isMenuOpen) return;
+            setMenuUI(false);
+            // Pokud uživatel zavřel menu křížkem (ne tlačítkem Zpět), vrátíme virtuální krok historie
+            if (!fromHistoryPop && history.state && history.state.mobileMenuOpen) {
+                history.back();
+            }
+        }
+
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            if (isMenuOpen) {
+                closeMobileMenu(false);
+            } else {
+                openMobileMenu();
+            }
         });
 
-        // Filtrování fotogalerie (podporuje více kategorií u jedné fotky oddělených mezerou)
+        // Kliknutí na libovolnou položku v mobilním menu
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) {
+                    setMenuUI(false);
+                }
+            });
+        });
+
+        // Zachycení tlačítka / gesta "Zpět" na mobilu (zavře menu nebo zvětšenou fotku)
+        window.addEventListener('popstate', () => {
+            if (isMenuOpen) {
+                closeMobileMenu(true);
+            }
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('hidden')) {
+                lightbox.classList.add('hidden');
+            }
+        });
+
+        // Automatické zavření mobilního menu, pokud uživatel začne posouvat stránku
+        window.addEventListener('scroll', () => {
+            if (isMenuOpen) {
+                setMenuUI(false);
+            }
+        }, { passive: true });
+
+        // Filtrování fotogalerie
         function filterGallery(category) {
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.gallery-filter-btn');
@@ -1088,7 +1155,7 @@
             });
         }
 
-        // Lightbox (zvětšení fotky) + zavření klávesou Escape
+        // Lightbox (zvětšení fotky) + podpora gesta Zpět a klávesy Escape
         function openLightbox(src, caption, isRotated) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
@@ -1102,14 +1169,24 @@
                 img.classList.remove('rotate-90', 'my-12');
             }
             lightbox.classList.remove('hidden');
+            history.pushState({ lightboxOpen: true }, '');
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').classList.add('hidden');
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('hidden')) {
+                lightbox.classList.add('hidden');
+                if (history.state && history.state.lightboxOpen) {
+                    history.back();
+                }
+            }
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'Escape') {
+                closeLightbox();
+                if (isMenuOpen) closeMobileMenu(false);
+            }
         });
 
         // Sestavení textu poptávky
