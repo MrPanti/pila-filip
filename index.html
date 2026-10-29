@@ -63,6 +63,10 @@
         .rotate-fix-90 {
             transform: rotate(90deg) scale(1.35);
         }
+        /* Odstup při prokliku z menu, aby pevná horní lišta nezakrývala nadpisy sekcí */
+        section[id] {
+            scroll-margin-top: 5.5rem;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-amber-600 selection:text-white">
@@ -1091,13 +1095,14 @@
         function closeMobileMenu(fromHistoryPop = false) {
             if (!isMenuOpen) return;
             setMenuUI(false);
-            // Pokud uživatel zavřel menu křížkem (ne tlačítkem Zpět), vrátíme virtuální krok historie
+            // Pokud uživatel zavřel menu křížkem nebo kliknutím mimo (ne tlačítkem Zpět), uklidíme krok v historii
             if (!fromHistoryPop && history.state && history.state.mobileMenuOpen) {
                 history.back();
             }
         }
 
-        menuBtn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (isMenuOpen) {
                 closeMobileMenu(false);
             } else {
@@ -1110,8 +1115,19 @@
             link.addEventListener('click', () => {
                 if (isMenuOpen) {
                     setMenuUI(false);
+                    // Nahradíme virtuální stav historie, aby po odrolování nezůstal viset prázdný krok Zpět
+                    if (history.state && history.state.mobileMenuOpen) {
+                        history.replaceState(null, '');
+                    }
                 }
             });
+        });
+
+        // Zavření mobilního menu při ťuknutí kamkoliv mimo menu (na stránku pod ním)
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                closeMobileMenu(false);
+            }
         });
 
         // Zachycení tlačítka / gesta "Zpět" na mobilu (zavře menu nebo zvětšenou fotku)
@@ -1122,15 +1138,9 @@
             const lightbox = document.getElementById('lightbox');
             if (!lightbox.classList.contains('hidden')) {
                 lightbox.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
             }
         });
-
-        // Automatické zavření mobilního menu, pokud uživatel začne posouvat stránku
-        window.addEventListener('scroll', () => {
-            if (isMenuOpen) {
-                setMenuUI(false);
-            }
-        }, { passive: true });
 
         // Filtrování fotogalerie
         function filterGallery(category) {
@@ -1155,7 +1165,7 @@
             });
         }
 
-        // Lightbox (zvětšení fotky) + podpora gesta Zpět a klávesy Escape
+        // Lightbox (zvětšení fotky) + podpora gesta Zpět a správné měřítko pro otočenou fotku
         function openLightbox(src, caption, isRotated) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
@@ -1164,11 +1174,12 @@
             img.src = src;
             cap.textContent = caption;
             if (isRotated) {
-                img.classList.add('rotate-90', 'my-12');
+                img.className = 'max-h-[65vw] sm:max-h-[65vh] w-auto mx-auto object-contain rounded-lg rotate-90 my-10';
             } else {
-                img.classList.remove('rotate-90', 'my-12');
+                img.className = 'max-h-[75vh] w-auto mx-auto object-contain rounded-lg';
             }
             lightbox.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
             history.pushState({ lightboxOpen: true }, '');
         }
 
@@ -1176,6 +1187,7 @@
             const lightbox = document.getElementById('lightbox');
             if (!lightbox.classList.contains('hidden')) {
                 lightbox.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
                 if (history.state && history.state.lightboxOpen) {
                     history.back();
                 }
