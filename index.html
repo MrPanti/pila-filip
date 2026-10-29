@@ -110,31 +110,6 @@
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-amber-600 selection:text-white">
-
-    <!-- Horní informační lišta -->
-    <div class="bg-stone-900 text-stone-300 text-xs sm:text-sm py-2 px-4 border-b border-stone-800 no-print">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <div class="flex items-center space-x-4">
-                <span class="flex items-center gap-1.5">
-                    <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    <span>Strunkovice nad Volyňkou 33, 387 01 (vjezd po asfaltu i pro kamiony)</span>
-                </span>
-                <span class="hidden md:inline text-stone-600">|</span>
-                <span class="hidden md:inline text-stone-400">Provozní doba: Po předchozí telefonické domluvě</span>
-            </div>
-            <div class="flex items-center space-x-4 font-medium">
-                <a href="tel:+420606751530" class="hover:text-amber-400 transition flex items-center gap-1 text-amber-400">
-                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                    606 751 530 (Mgr. Zdeněk Filip)
-                </a>
-                <span class="text-stone-600">|</span>
-                <a href="tel:+420725860671" class="hover:text-white transition hidden sm:inline">
-                    725 860 671 (Ing. David Filip)
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- Hlavní navigace -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200 no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -164,11 +139,10 @@
                     <a href="#kontakt" class="hover:text-amber-600 transition">Kontakt</a>
                 </nav>
 
-                <!-- Rychlá akce -->
+                <!-- Rychlá akce (bez čísla, čistý proklik na kontakty) -->
                 <div class="hidden sm:flex items-center space-x-3">
-                    <a href="tel:+420606751530" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2.5 rounded-lg font-bold text-sm shadow-sm transition flex items-center gap-2">
-                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                        <span>606 751 530</span>
+                    <a href="#kontakt" class="bg-stone-900 hover:bg-amber-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition">
+                        Kontaktovat pilu
                     </a>
                 </div>
 
@@ -1110,17 +1084,64 @@
     </section>
 
     <!-- Zápatí -->
-    <footer class="bg-stone-950 text-stone-400 py-8 border-t border-stone-800 text-xs sm:text-sm no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>
-                <strong class="text-white">Pila Filip – Strunkovice nad Volyňkou 33, 387 01</strong> • Mgr. Zdeněk Filip (IČO: 47253754, DIČ: CZ6507140420, plátce DPH)
+    <!-- Zápatí (plnohodnotný přehled kontaktů a údajů) -->
+    <footer class="bg-stone-950 text-stone-400 py-12 border-t border-stone-800 text-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-stone-800/80">
+                <!-- Sloupec 1: O pile a adresa -->
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded bg-amber-600 flex items-center justify-center text-white font-extrabold text-sm shrink-0">PF</div>
+                        <span class="text-lg font-extrabold text-white tracking-tight">PILA FILIP</span>
+                    </div>
+                    <p class="text-stone-400 text-xs leading-relaxed">
+                        Zakázkový pořez kulatiny do 10 m, prodej stavebního řeziva, hoblování a výroba palubek na 5stranné fréze Wood-Mizer MP365.
+                    </p>
+                    <p class="text-stone-300 text-xs mt-3">
+                        <strong>Adresa provozovny:</strong> Strunkovice nad Volyňkou 33, 387 01<br>
+                        <span class="text-stone-500">Provozní doba: Po předchozí telefonické domluvě</span>
+                    </p>
+                </div>
+
+                <!-- Sloupec 2: Rychlá navigace -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Rychlé odkazy</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#sluzby" class="hover:text-amber-400 transition">Pořez kulatiny a prodej řeziva</a></li>
+                        <li><a href="#profilovani" class="hover:text-amber-400 transition">5stranná fréza MP365 (palubky a fošny)</a></li>
+                        <li><a href="#cnc-krovy" class="hover:text-amber-400 transition">CNC příprava krovů (VOŠ a SPŠ Volyně)</a></li>
+                        <li><a href="#doprava" class="hover:text-amber-400 transition">Doprava řeziva (11m vlek)</a></li>
+                        <li><a href="#fotogalerie" class="hover:text-amber-400 transition">Fotogalerie z provozu</a></li>
+                        <li><a href="#cenik" class="hover:text-amber-400 transition">Orientační ceník</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sloupec 3: Kontakty a fakturační údaje -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Kontakt a fakturační údaje</h4>
+                    <ul class="space-y-1.5 text-xs">
+                        <li class="text-stone-300">
+                            <strong>Mgr. Zdeněk Filip:</strong> 
+                            <a href="tel:+420606751530" class="text-amber-400 hover:underline font-bold ml-1">+420 606 751 530</a>
+                        </li>
+                        <li class="text-stone-300">
+                            <strong>Ing. David Filip:</strong> 
+                            <a href="tel:+420725860671" class="hover:text-white transition font-semibold ml-1">+420 725 860 671</a>
+                        </li>
+                        <li class="text-stone-300 pt-1">
+                            <strong>E-mail:</strong> 
+                            <a href="mailto:z.filip@pila-filip.cz" class="text-amber-400 hover:underline ml-1">z.filip@pila-filip.cz</a>
+                        </li>
+                        <li class="text-stone-400 pt-2">
+                            IČO: 47253754 • DIČ: CZ6507140420 (plátce DPH)
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="flex flex-wrap gap-4">
-                <a href="#sluzby" class="hover:text-white transition">Pořez a řezivo</a>
-                <a href="#profilovani" class="hover:text-white transition">5stranná fréza</a>
-                <a href="#fotogalerie" class="hover:text-white transition">Fotogalerie</a>
-                <a href="#cenik" class="hover:text-white transition">Ceník</a>
-                <a href="#kontakt" class="hover:text-white transition">Kontakt</a>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-stone-500">
+                <span>© 2026 Pila Filip – Strunkovice nad Volyňkou 33. Všechna práva vyhrazena.</span>
+                <a href="#" class="hover:text-stone-300 transition">Nahoru ↑</a>
             </div>
         </div>
     </footer>
