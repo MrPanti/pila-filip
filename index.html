@@ -1069,7 +1069,9 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const iconOpen = document.getElementById('menu-icon-open');
         const iconClose = document.getElementById('menu-icon-close');
-        let isMenuOpen = false;
+       let isMenuOpen = false;
+        let menuOpenScrollY = 0;
+        let menuOpenTime = 0;
 
         function setMenuUI(open) {
             isMenuOpen = open;
@@ -1087,6 +1089,8 @@
 
         function openMobileMenu() {
             if (isMenuOpen) return;
+            menuOpenScrollY = window.scrollY;
+            menuOpenTime = Date.now();
             setMenuUI(true);
             // Přidáme virtuální krok do historie prohlížeče, aby gesto "Zpět" na mobilu zavřelo menu
             history.pushState({ mobileMenuOpen: true }, '');
@@ -1095,7 +1099,7 @@
         function closeMobileMenu(fromHistoryPop = false) {
             if (!isMenuOpen) return;
             setMenuUI(false);
-            // Pokud uživatel zavřel menu křížkem nebo kliknutím mimo (ne tlačítkem Zpět), uklidíme krok v historii
+            // Pokud uživatel zavřel menu křížkem, kliknutím mimo nebo posunem (ne tlačítkem Zpět), uklidíme krok v historii
             if (!fromHistoryPop && history.state && history.state.mobileMenuOpen) {
                 history.back();
             }
@@ -1123,12 +1127,21 @@
             });
         });
 
-        // Zavření mobilního menu při ťuknutí kamkoliv mimo menu (na stránku pod ním)
+        // Zavření mobilního menu při ťuknutí kamkoliv mimo menu
         document.addEventListener('click', (e) => {
             if (isMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
                 closeMobileMenu(false);
             }
         });
+
+        // Elegantní zavření při posunu stránky (ignoruje mikropohyby při kliknutí, reaguje až na posun > 35 px)
+        window.addEventListener('scroll', () => {
+            if (!isMenuOpen) return;
+            if (Date.now() - menuOpenTime < 150) return;
+            if (Math.abs(window.scrollY - menuOpenScrollY) > 35) {
+                closeMobileMenu(false);
+            }
+        }, { passive: true });
 
         // Zachycení tlačítka / gesta "Zpět" na mobilu (zavře menu nebo zvětšenou fotku)
         window.addEventListener('popstate', () => {
